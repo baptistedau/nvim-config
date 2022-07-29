@@ -21,6 +21,7 @@ set.termguicolors = true
 set.colorcolumn = {80}
 
 set.relativenumber = true
+set.number = true
 set.cursorline = true
 set.hidden = true
 

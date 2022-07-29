@@ -184,4 +184,11 @@ use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
 -- Random stuff
 use 'ntpeters/vim-better-whitespace'
+
+use {
+    'tanvirtin/vgit.nvim',
+    requires = {'nvim-lua/plenary.nvim'},
+    config = function() require('vgit').setup() end
+}
+
 end)
