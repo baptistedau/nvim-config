@@ -27,8 +27,12 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-treesitter/nvim-treesitter',
+    }
+
+    use {
+        'p00f/nvim-ts-rainbow',
         requires = {
-            'p00f/nvim-ts-rainbow',
+            'nvim-treesitter/nvim-treesitter',
         }
     }
 
@@ -58,6 +62,13 @@ return require('packer').startup(function(use)
 
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
+    use {
+        'rhysd/vim-clang-format',
+        requires = {
+            'kana/vim-operator-user'
+        }
+    }
+
     -- Random stuff
     use 'ntpeters/vim-better-whitespace'
 
@@ -68,10 +79,12 @@ return require('packer').startup(function(use)
 
     use "tpope/vim-fugitive"
 
+    --[[
     use {
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
     }
+    ]]--
 
     if packer_bootstrap then
         require('packer').sync()
