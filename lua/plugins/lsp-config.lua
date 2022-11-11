@@ -1,6 +1,13 @@
 -- Nvim lsp installer & config
 local lsp_installer = require("nvim-lsp-installer")
 local lspconfig = require("lspconfig")
+local signature = require("lsp_signature")
+
+signature.setup({
+    bind = true,
+    hint_enable = false,
+})
+
 lsp_installer.setup({ automatic_installation = true })
 
 lspconfig.util.default_config = vim.tbl_extend(
