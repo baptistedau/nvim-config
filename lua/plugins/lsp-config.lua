@@ -1,35 +1,32 @@
 -- Nvim lsp installer & config
-local lsp_installer = require("nvim-lsp-installer")
-local lspconfig = require("lspconfig")
-local signature = require("lsp_signature")
 
+local lspconfig = require("lspconfig")
+local mason = require("mason")
+local mason_lspcfg = require("mason-lspconfig")
+mason.setup {
+    ui = {
+        icons = {
+            package_installed = "✓"
+        }
+    }
+}
+mason_lspcfg.setup {
+    ensure_installed = {},
+    automatic_installation = true,
+}
+
+mason_lspcfg.setup_handlers {
+    function (server_name) -- default handler (optional)
+        lspconfig[server_name].setup {}
+    end,
+}
+
+
+local signature = require("lsp_signature")
 signature.setup({
     bind = true,
     hint_enable = false,
 })
-
-lsp_installer.setup({ automatic_installation = true })
-
-lspconfig.util.default_config = vim.tbl_extend(
-    "force",
-    lspconfig.util.default_config,
-    { on_attach = function(_, bufnr)
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = true,
-            signs = false,
-
-            -- delay update diagnostics
-            update_in_insert = false,
-        }
-        )
-    end
-    }
-)
-
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
-    lspconfig[server.name].setup {}
-end
 
 -- Nvim cmp
 local luasnip = require 'luasnip'

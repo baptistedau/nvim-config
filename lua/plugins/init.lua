@@ -44,11 +44,11 @@ return require('packer').startup(function(use)
     }
 
 
-    -- LSP Stuff
-    use {
-        'williamboman/nvim-lsp-installer',
-        requires = { 'neovim/nvim-lspconfig' }
-    }
+    use { "williamboman/mason.nvim" }
+
+    use { "williamboman/mason-lspconfig.nvim" }
+
+    use { "neovim/nvim-lspconfig" }
 
     use {
         'hrsh7th/nvim-cmp',
