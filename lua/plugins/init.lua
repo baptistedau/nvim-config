@@ -7,6 +7,16 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
+local packer = require("packer")
+
+packer.init({
+    display = {
+        open_fn = function()
+            return require('packer.util').float({ border = 'single' })
+        end
+    }
+})
+
 function get_require(name)
     return string.format('plugins.setup.%s', name)
 end
